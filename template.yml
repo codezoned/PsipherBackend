@@ -1,11 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Example Pet Store API written with SpringBoot with the aws-serverless-java-container library
-
-Globals:
-  Api:
-    # API Gateway regional endpoints
-    EndpointConfiguration: REGIONAL
+Description: Lambda with spring boot.
 
 Resources:
   PsipherFunction:
@@ -18,15 +13,15 @@ Resources:
       Policies: AWSLambdaBasicExecutionRole
       Timeout: 60
       Events:
-        HttpApiEvent:
-          Type: HttpApi
+        GetResource:
+          Type: Api
           Properties:
-            TimeoutInMillis: 20000
-            PayloadFormatVersion: '1.0'
+            Path: /{proxy+}
+            Method: any
 
 Outputs:
   SpringBootPsipherApi:
     Description: URL for application
-    Value: !Sub 'https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/pets'
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Stage/ping'
     Export:
       Name: SpringBootPsipherApi
