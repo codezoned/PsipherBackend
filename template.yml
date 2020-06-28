@@ -21,7 +21,7 @@ Resources:
 
 Outputs:
   SpringBootPsipherApi:
-    Description: URL for application
+    Description: URL for application /ping can be replaced by the url mapped
     Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Stage/ping'
     Export:
       Name: SpringBootPsipherApi
