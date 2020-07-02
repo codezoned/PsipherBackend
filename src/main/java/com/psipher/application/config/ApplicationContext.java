@@ -25,11 +25,6 @@ public class ApplicationContext {
     }
 
     @Bean
-    public UserDetailsOperations getUserDetailsOperations() {
-        return new UserDetailsOperationsImpl();
-    }
-
-    @Bean
     public DynamoDBMapper getDynamoDbMapper() {
         return new DynamoDBMapper(getDynamoDbClient());
     }

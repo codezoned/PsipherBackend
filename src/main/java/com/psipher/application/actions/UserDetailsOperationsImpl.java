@@ -7,6 +7,7 @@ import com.psipher.application.ddbmodel.WebsiteDDBModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +15,17 @@ import java.util.List;
 /**
  * Implements UserDetailsOperations and provide all functionality mention in the interface
  */
+@Component
 public class UserDetailsOperationsImpl implements UserDetailsOperations {
 
-    @Autowired
     DynamoDBMapper dynamoDBMapper;
 
     private static final Logger logger = LoggerFactory.getLogger(UserDetailsOperationsImpl.class);
+
+    @Autowired
+    public UserDetailsOperationsImpl(DynamoDBMapper dynamoDBMapper) {
+        this.dynamoDBMapper = dynamoDBMapper;
+    }
 
     @Override
     public String saveDetails(String userId, String domain, String userAccount, String type, String password) {

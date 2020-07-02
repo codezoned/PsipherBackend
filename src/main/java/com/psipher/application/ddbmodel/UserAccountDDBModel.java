@@ -17,6 +17,6 @@ public class UserAccountDDBModel {
     @DynamoDBAttribute(attributeName="type")
     private String type;
 
-    @DynamoDBAttribute(attributeName="domain")
+    @DynamoDBAttribute(attributeName="password")
     private String password;
 }
