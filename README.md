@@ -11,6 +11,8 @@ Accessible securely and remotely without giving any chance for dataleak.
 * DynamoDB
 * AWS Serverless SDK
 
+## High Level Design 📋 [Click here](HLD.md)
+
 ## Resources used for Deployed & Running:
 * AWS Lamda
 * DynamoDB
@@ -30,7 +32,7 @@ Before proceeding, make sure you the [AWS CLI](https://aws.amazon.com/cli/) inst
 $ cd ~/library-folder/workspace/PsipherBackend
 ```
 
-To build PsipherBackend Application 
+To build PsipherBackend Application
 ```
 ./mvnw package
 ```
@@ -40,7 +42,7 @@ If you already have maven installed locally use
 mvn package
 ````
 
-To deploy 
+To deploy
 * Clean and rebuild the code as a shaded jar, not as a PsipherBackend jar.
 ```
 ./mvnw clean package
@@ -63,7 +65,7 @@ aws cloudformation deploy --template-file target/output-template.yml --stack-nam
 aws cloudformation describe-stacks --stack-name psipherbackend-lambda
 ```
 "OutputValue": "https://andhfldf.execute-api.us-east-2.amazonaws.com/Stage/ping"   You will get unique urls like shown.
-     
+
 
 ## Running Locally and Testing
 To build and run from a packaged jar locally:
@@ -91,7 +93,7 @@ Testing can be done using any of the follow
 * curl
 * by opening the url in web browser
 * postman or any similar tools can be used.
-Local URL will be like 
+Local URL will be like
 ```
 http://localhost:8080/(psipher-apis)
 ```
