@@ -10,7 +10,7 @@ public class UserPing {
     @RequestMapping(path = "/ping", method = RequestMethod.GET)
     public User listLambdaLanguages() {
         User user = new User();
-        user.setId("123");
+        user.setId  ("123");
         user.setName("Name");
         return user;
     }

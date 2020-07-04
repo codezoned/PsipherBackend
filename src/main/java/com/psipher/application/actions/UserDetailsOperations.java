@@ -1,6 +1,7 @@
 package com.psipher.application.actions;
 
 import com.psipher.application.ddbmodel.UserDDBModel;
+import com.psipher.application.exceptions.DDBException;
 
 /**
  * Add all the required functions for operation such as
@@ -30,7 +31,7 @@ public interface UserDetailsOperations {
 
     /**
      * updateUser will update the data in the db
-     * @param userDDBModel existing data from the dynamodb
+     * @param userDDBModel existing data from the dynamoDB
      * @param userId userId psipher specific
      * @param domain domain like google.com etc
      * @param userAccount account of the user in the domain
@@ -38,5 +39,13 @@ public interface UserDetailsOperations {
      * @param password password
      */
     void updateUser(UserDDBModel userDDBModel, String userId, String domain, String userAccount, String type, String password);
+
+    /**
+     * viewDetails returns all user details
+     * @param userId user id
+     * @return UserDDBModel
+     * @throws DDBException dynamoDB custom exception
+     */
+    UserDDBModel viewDetails(String userId) throws DDBException;
 
 }

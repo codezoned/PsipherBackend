@@ -1,6 +1,6 @@
 package com.psipher.application.ddbmodel;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import   com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,3 +20,4 @@ public class WebsiteDDBModel {
     private List<UserAccountDDBModel> userAccountsDDBModel;
 
 }
+  

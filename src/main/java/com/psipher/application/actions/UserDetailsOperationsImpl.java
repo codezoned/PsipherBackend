@@ -4,6 +4,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.psipher.application.ddbmodel.UserAccountDDBModel;
 import com.psipher.application.ddbmodel.UserDDBModel;
 import com.psipher.application.ddbmodel.WebsiteDDBModel;
+import com.psipher.application.exceptions.DDBException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class UserDetailsOperationsImpl implements UserDetailsOperations {
         // TODO After getting auth token we make call to Cognito to get the UserName/ID
         String status;
         try {
-            UserDDBModel userDDBModel = dynamoDBMapper.load(UserDDBModel.class, userId);
+            UserDDBModel userDDBModel = viewDetails(userId);
             if (userDDBModel != null) {
                 updateUser(userDDBModel, userId, domain, userAccount, type, password);
             } else {
@@ -48,6 +49,19 @@ public class UserDetailsOperationsImpl implements UserDetailsOperations {
         }
         return status;
     }
+
+    @Override
+    public UserDDBModel viewDetails(String userId) throws DDBException {
+        UserDDBModel userDDBModel;
+        try {
+            userDDBModel = dynamoDBMapper.load(UserDDBModel.class, userId);
+        } catch (Exception e) {
+            logger.error(String.format("Failed to load data for userId:%s error:%s", userId, e.getMessage()));
+            throw new DDBException(String.format("Failed to load data for userId:%s", userId));
+        }
+        return userDDBModel;
+    }
+
 
     @Override
     public void createNewUser(String userId, String domain, String userAccount, String type, String password) {
