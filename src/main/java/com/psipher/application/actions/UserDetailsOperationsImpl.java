@@ -90,6 +90,27 @@ public class UserDetailsOperationsImpl implements UserDetailsOperations {
         dynamoDBMapper.save(userDDBModel);
     }
 
+    @Override
+    public String deleteDomain(String userId, String domain) throws DDBException {
+        UserDDBModel userDDBModel = viewDetails(userId);
+        List<WebsiteDDBModel> websiteDDBModels = userDDBModel.getWebsites();
+        for (WebsiteDDBModel websiteDDBModel : websiteDDBModels) {
+            if (websiteDDBModel.getDomain().equals(domain)) {
+                websiteDDBModels.remove(websiteDDBModel);
+                break;
+            }
+        }
+        String status;
+        try {
+            dynamoDBMapper.save(userDDBModel);
+            status = "success";
+        } catch (Exception e) {
+            logger.error(String.format("Failed to delete domain: %s for userId: %s exception: %s", domain, userId, e.getMessage()));
+            throw new DDBException("Failed to delete domain");
+        }
+        return status;
+    }
+
     /**
      * Search for the account if already exists then update it else create a new one
      * @param userAccountDDBModels list of account present in the domain
