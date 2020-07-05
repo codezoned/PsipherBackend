@@ -19,10 +19,6 @@ public class DeleteDomain {
     private static final Logger logger = LoggerFactory.getLogger(DeleteDomain.class);
 
     final static String INVALID_INPUT = "Invalid input";
-<<<<<<< HEAD
-=======
-    final static String UNKNOWN_USER = "Unknown User";
->>>>>>> 28384223f3150c7b693855399189046e082f095a
 
     @Autowired
     public DeleteDomain(UserDetailsOperations userDetailsOperations) {
@@ -32,11 +28,7 @@ public class DeleteDomain {
     @RequestMapping(path = "/deletedomain", method = RequestMethod.POST)
     public DeleteDomainOutput deleteDomain(@RequestBody DeleteDomainInput deleteDomainInput) {
         if (!checkValidInput(deleteDomainInput))
-<<<<<<< HEAD
             return new DeleteDomainOutput(INVALID_INPUT);
-=======
-            return new DeleteDomainOutput(deleteDomainInput != null ? deleteDomainInput.getUserId() : UNKNOWN_USER, INVALID_INPUT);
->>>>>>> 28384223f3150c7b693855399189046e082f095a
         String status;
         try {
             status = userDetailsOperations.deleteDomain(deleteDomainInput.getUserId(), deleteDomainInput.getDomain());
@@ -44,11 +36,7 @@ public class DeleteDomain {
             status = "Failure";
             logger.error(e.getMessage());
         }
-<<<<<<< HEAD
         return new DeleteDomainOutput(status);
-=======
-        return new DeleteDomainOutput(deleteDomainInput.getUserId(), status);
->>>>>>> 28384223f3150c7b693855399189046e082f095a
     }
 
     private boolean checkValidInput(DeleteDomainInput deleteDomainInput) {
