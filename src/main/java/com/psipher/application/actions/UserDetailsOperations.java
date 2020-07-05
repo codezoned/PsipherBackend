@@ -48,4 +48,12 @@ public interface UserDetailsOperations {
      */
     UserDDBModel viewDetails(String userId) throws DDBException;
 
+    /**
+     * This will delete domain for the specified userId
+     * @param userId userId psipher specific
+     * @param domain domain like google.com etc
+     * @return status
+     * @throws DDBException dynamoDB custom exception
+     */
+    String deleteDomain(String userId, String domain) throws DDBException;
 }
