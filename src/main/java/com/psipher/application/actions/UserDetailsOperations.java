@@ -56,4 +56,12 @@ public interface UserDetailsOperations {
      * @throws DDBException dynamoDB custom exception
      */
     String deleteDomain(String userId, String domain) throws DDBException;
+
+    /**
+     * This will delete user permanently from psipher
+     * @param userId userId psipher specific
+     * @return status
+     * @throws DDBException dynamoDB custom exception
+     */
+    String deleteUserId(String userId) throws DDBException;
 }
