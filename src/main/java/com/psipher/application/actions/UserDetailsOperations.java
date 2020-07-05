@@ -63,5 +63,5 @@ public interface UserDetailsOperations {
      * @return status
      * @throws DDBException dynamoDB custom exception
      */
-    String deleteUserId(String userId) throws DDBException;
+    String deleteUser(String userId) throws DDBException;
 }

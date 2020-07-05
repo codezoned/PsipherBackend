@@ -112,7 +112,7 @@ public class UserDetailsOperationsImpl implements UserDetailsOperations {
     }
 
     @Override
-    public String deleteUserId(String userId) throws DDBException {
+    public String deleteUser(String userId) throws DDBException {
         UserDDBModel userDDBModel = viewDetails(userId);
         String status;
         try {
@@ -120,7 +120,7 @@ public class UserDetailsOperationsImpl implements UserDetailsOperations {
             status = "success";
         } catch (Exception e) {
             logger.error(String.format("Failed to delete userId: %s exception: %s", userId, e.getMessage()));
-            throw new DDBException("Failed to delete userId");
+            throw new DDBException("Failed to delete user");
         }
         return status;
     }

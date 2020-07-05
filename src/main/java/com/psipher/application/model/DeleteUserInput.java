@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeleteUserIdOutput {
-    private String status;
+public class DeleteUserInput {
+    private String userId;
 }
