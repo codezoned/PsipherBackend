@@ -125,6 +125,43 @@ public class UserDetailsOperationsImpl implements UserDetailsOperations {
         return status;
     }
 
+    @Override
+    public String deleteUserAccount(String userId, String domain, String userAccount) throws DDBException {
+        UserDDBModel userDDBModel = viewDetails(userId);
+        List<WebsiteDDBModel> websiteDDBModels = userDDBModel.getWebsites();
+        for (WebsiteDDBModel websiteDDBModel : websiteDDBModels) {
+            if (websiteDDBModel.getDomain().equals(domain)) {
+                searchAccountAndDelete(websiteDDBModel.getUserAccountsDDBModel(), userAccount);
+                break;
+            }
+        }
+        String status;
+        try {
+            dynamoDBMapper.save(userDDBModel);
+            status = "success";
+        } catch (Exception e) {
+            logger.error(String.format("Failed to delete user account: %s in domain: %s for userId: %s exception: %s",
+                    userAccount, domain, userId, e.getMessage()));
+            throw new DDBException("Failed to delete userAccount");
+        }
+        return status;
+    }
+
+    /**
+     * Search for the account and deletes the record
+     *
+     * @param userAccountDDBModels list of account present in the domain
+     * @param userAccount          user account which is going to be deleted
+     */
+    private void searchAccountAndDelete(List<UserAccountDDBModel> userAccountDDBModels, String userAccount) {
+        for (UserAccountDDBModel userAccountDDBModel : userAccountDDBModels) {
+            if (userAccountDDBModel.getId().equals(userAccount)) {
+                userAccountDDBModels.remove(userAccountDDBModel);
+                break;
+            }
+        }
+    }
+
     /**
      * Search for the account if already exists then update it else create a new one
      * @param userAccountDDBModels list of account present in the domain
