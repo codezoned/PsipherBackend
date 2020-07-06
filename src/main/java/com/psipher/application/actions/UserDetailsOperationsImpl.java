@@ -155,7 +155,7 @@ public class UserDetailsOperationsImpl implements UserDetailsOperations {
      */
     private void searchAccountAndDelete(List<UserAccountDDBModel> userAccountDDBModels, String userAccount) {
         for (UserAccountDDBModel userAccountDDBModel : userAccountDDBModels) {
-            if (userAccountDDBModel.getId().equals((userAccount))) {
+            if (userAccountDDBModel.getId().equals(userAccount)) {
                 userAccountDDBModels.remove(userAccountDDBModel);
                 break;
             }
