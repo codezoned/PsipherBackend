@@ -64,4 +64,14 @@ public interface UserDetailsOperations {
      * @throws DDBException dynamoDB custom exception
      */
     String deleteUser(String userId) throws DDBException;
+
+    /**
+     * This will delete userAccount in a particular domain of a user
+     * @param userId      userId psipher specific
+     * @param domain      domain like google.com etc
+     * @param userAccount account of the user in the domain
+     * @return status
+     * @throws DDBException dynamoDB custom exception
+     */
+    String deleteUserAccount(String userId, String domain, String userAccount) throws DDBException;
 }
