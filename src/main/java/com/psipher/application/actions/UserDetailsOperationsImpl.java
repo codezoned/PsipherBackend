@@ -111,6 +111,20 @@ public class UserDetailsOperationsImpl implements UserDetailsOperations {
         return status;
     }
 
+    @Override
+    public String deleteUser(String userId) throws DDBException {
+        UserDDBModel userDDBModel = viewDetails(userId);
+        String status;
+        try {
+            dynamoDBMapper.delete(userDDBModel);
+            status = "success";
+        } catch (Exception e) {
+            logger.error(String.format("Failed to delete userId: %s exception: %s", userId, e.getMessage()));
+            throw new DDBException("Failed to delete user");
+        }
+        return status;
+    }
+
     /**
      * Search for the account if already exists then update it else create a new one
      * @param userAccountDDBModels list of account present in the domain
