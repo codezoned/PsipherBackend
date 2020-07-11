@@ -15,6 +15,9 @@ import java.util.List;
 @Component
 public class GeneratePasswordOperationsImpl implements GeneratePasswordOperations {
 
+    private static final String SPECIAL_SYMBOLS = "!\\\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{|}~";
+    private static final String ERR_CODE = "Failed to generate Special Characters";
+
     @Override
     public String generatePassword(Integer length) {
         List<CharacterRule> rules = new ArrayList<>();
@@ -25,12 +28,12 @@ public class GeneratePasswordOperationsImpl implements GeneratePasswordOperation
 
             @Override
             public String getErrorCode() {
-                return "Failed to generate Special Characters";
+                return ERR_CODE;
             }
 
             @Override
             public String getCharacters() {
-                return "!\\\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{|}~";
+                return SPECIAL_SYMBOLS;
             }
         }, 1));
 
