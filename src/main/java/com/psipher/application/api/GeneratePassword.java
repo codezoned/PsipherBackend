@@ -1,0 +1,40 @@
+package com.psipher.application.api;
+
+import com.psipher.application.actions.GeneratePasswordOperations;
+import com.psipher.application.exceptions.DDBException;
+import com.psipher.application.model.GeneratePasswordOutput;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class GeneratePassword {
+    GeneratePasswordOperations generatePasswordOperations;
+
+    public static final Logger logger = LoggerFactory.getLogger(GeneratePassword.class);
+
+    @Autowired
+    public GeneratePassword(GeneratePasswordOperations generatePasswordOperations) {
+        this.generatePasswordOperations = generatePasswordOperations;
+    }
+
+    @RequestMapping(path = "/generatepassword", method = RequestMethod.GET)
+    public GeneratePasswordOutput generatePassword(@RequestParam Integer length) {
+        GeneratePasswordOutput generatePasswordOutput = new GeneratePasswordOutput();
+        try {
+            if (length != null && length >= 6) {
+                generatePasswordOutput.setPassword(generatePasswordOperations.generatePassword(length));
+                generatePasswordOutput.setStatus("success");
+            }
+        } catch (DDBException e) {
+            generatePasswordOutput.setStatus("Failure");
+            generatePasswordOutput.setPassword(null);
+            logger.error(e.getMessage());
+        }
+        return generatePasswordOutput;
+    }
+}
