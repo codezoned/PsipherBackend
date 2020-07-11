@@ -12,5 +12,5 @@ public interface GeneratePasswordOperations {
      * @param length Length of password
      * @return password
      */
-    String generatePassword(Integer length) throws DDBException;
+    String generatePassword(Integer length);
 }
