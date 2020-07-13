@@ -1,4 +1,4 @@
-# Welcome to Psipher Backend ✨
+# Welcome to Psipher Backend ⚙️
  <p>
     <a href="https://github.com/codezoned/PsipherBackend/commits/master" target="_blank">
         <img src="https://img.shields.io/github/commit-activity/y/codezoned/PSipherBackend.svg" alt="GitHub commit activity">
@@ -17,21 +17,31 @@ This package only deals with the backend part of the project.
 
 # Table of Contents
 1. [Why Psipher](#why-psipher)
-2. [Built with](#built-with)
+2. [Dependencies](#dependencies)
 3. [High Level Design](#high-level-design)
 4. [How to deploy](#how-to-deploy)
 ## Why Psipher 💬
-Psipher's main priority is user security. It is used to store passwords securely without the intervention of any third-party applications throughout the process. 
-Remote accessibilty by the user prevents chances of any dataleaks from occuring.
+1. Once Psipher has been deployed on a system, the independent user has complete **ownership** of the application.
 
-## Built with
+2. Psipher has a serverless architecture:
+
+     * Our prime focus is on user **security** and **privacy**. The passwords are securely stored without the intervention of any third-party applications and this **prevents dataleaks** from occuring. 
+     * It is highly **reliable**.
+     * Requires **very low maintenance**.
+     * It is **highly scalable** - if many people want to use the same account to store passwords.
+3. Doesn't require any subscription:
+
+    * It is available **free** of cost for students/people having AWS Free Tier account.
+    * For rest of the users, there is **minimal payment** for AWS account which is equivalent to a meal from one of your favourite burger joints.
+## Dependencies 🔍
 * SpringBoot
 * DynamoDB
-* AWS Serverless SDK
+* Passay
+* AWS KMS
 
 ## High Level Design 📋 [Click here](HLD.md)
 
-## How to Deploy 
+## How to Deploy ❓
 Clone PsipherBackend to your workspace. In the application, the Maven pom.xml file and a SAM template have been included. The easiest way to deploy PsipherBackend would be to use the SAM CLI.
 
 Before proceeding, make sure you have the [AWS CLI](https://aws.amazon.com/cli/) installed and configured with a set of AWS credentials, and the [SAM CLI](https://github.com/awslabs/aws-sam-cli).
@@ -111,5 +121,5 @@ http://localhost:8080/(psipher-apis)
 
 [![](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/images/0)](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/links/0)[![](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/images/1)](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/links/1)[![](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/images/2)](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/links/2)[![](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/images/3)](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/links/3)[![](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/images/4)](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/links/4)[![](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/images/5)](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/links/5)[![](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/images/6)](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/links/6)[![](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/images/7)](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/links/7)
 
-## 💌 Contributions
+## Contributions 💌 
 This project welcomes any contributions and suggestions. We use GitHub issues for tracking requests and bugs.
