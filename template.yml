@@ -10,7 +10,7 @@ Resources:
       Runtime: java8
       CodeUri: target/psipher-0.0.1-SNAPSHOT.jar
       MemorySize: 1512
-      Policies: [AWSLambdaBasicExecutionRole, AWSLambdaDynamoDBExecutionRole, AmazonDynamoDBFullAccess]
+      Policies: [AWSLambdaBasicExecutionRole, AWSLambdaDynamoDBExecutionRole, AmazonDynamoDBFullAccess, AWSKeyManagementServicePowerUser]
       Timeout: 60
       Events:
         GetResource:
