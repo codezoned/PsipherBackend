@@ -38,7 +38,7 @@ public class ApplicationContext {
 
     @Bean
     public DirectKmsMaterialProvider getDirectKmsMaterialProvider() {
-        final String cmkArn = "Insert here - ARN-key from kms service in aws";
+        final String cmkArn = "alias/encryptAll";
         return new DirectKmsMaterialProvider(getAwsKms(), cmkArn);
     }
 
