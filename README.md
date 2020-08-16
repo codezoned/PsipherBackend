@@ -10,8 +10,8 @@
         <img src="https://img.shields.io/packagist/dt/codezoned/PSipherBackend.svg" alt="Packagist downloads">
     </a>
  </p>
- 
-Psipher is a free and open source password managing web application. 
+
+Psipher is a free and open source password managing web application.
 It has a serverless architecture and can be deployed locally to the user's personal cloud account, such as AWS.
 This package only deals with the backend part of the project.
 
@@ -20,12 +20,14 @@ This package only deals with the backend part of the project.
 2. [Dependencies](#dependencies)
 3. [High Level Design](#high-level-design)
 4. [How to deploy](#how-to-deploy)
+5. [API documentation and Testing with Swagger UI](#api-documentation-and-testing-with-swagger-ui)
+
 ## Why Psipher 💬
 1. Once Psipher has been deployed on a system, the independent user has complete **ownership** of the application.
 
 2. Psipher has a serverless architecture:
 
-     * Our prime focus is on user **security** and **privacy**. The passwords are securely stored without the intervention of any third-party applications and this **prevents dataleaks** from occuring. 
+     * Our prime focus is on user **security** and **privacy**. The passwords are securely stored without the intervention of any third-party applications and this **prevents dataleaks** from occuring.
      * It is highly **reliable**.
      * Requires **very low maintenance**.
      * It is **highly scalable** - if many people want to use the same account to store passwords.
@@ -69,8 +71,9 @@ To deploy:
 * Create an S3 bucket to hold the application code. This bucket name must be unique across S3, so adjust for your use in the next two steps.
 ```
 aws s3 mb s3://PsipherBackend-lambda
-Instead of PsipherBackend-lambda create your own unique name.
 ```
+Instead of PsipherBackend-lambda create your own unique name.
+
 * Copy the jar file to the S3 bucket and update the information into a SAM template.
 ```
 aws cloudformation package --template-file template.yml --output-template-file target/output-template.yml --s3-bucket PsipherBackend-lambda
@@ -117,9 +120,11 @@ Local URL will be like
 http://localhost:8080/(psipher-apis)
 ```
 
-## Maintainers 💻 
+## API documentation and Testing with Swagger UI 🔨 [Click Here](PsipherSwaggerReadme.md)
+
+## Maintainers 💻
 
 [![](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/images/0)](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/links/0)[![](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/images/1)](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/links/1)[![](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/images/2)](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/links/2)[![](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/images/3)](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/links/3)[![](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/images/4)](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/links/4)[![](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/images/5)](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/links/5)[![](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/images/6)](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/links/6)[![](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/images/7)](https://sourcerer.io/fame/rahulkrishnan221/rahulkrishnan221/PsipherBackend/links/7)
 
-## Contributions 💌 
+## Contributions 💌
 This project welcomes any contributions and suggestions. We use GitHub issues for tracking requests and bugs.
