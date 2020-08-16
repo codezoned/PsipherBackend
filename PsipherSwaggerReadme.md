@@ -7,7 +7,6 @@
 
     ```
     ./mvnw spring-boot:run
-
     ```
 
     For Command Prompt
