@@ -38,7 +38,7 @@ public class ApplicationContext {
 
     @Bean
     public DirectKmsMaterialProvider getDirectKmsMaterialProvider() {
-        final String cmkArn = "alias/encryptAll";
+        final String cmkArn = "alias/encryptPsipher";
         return new DirectKmsMaterialProvider(getAwsKms(), cmkArn);
     }
 
