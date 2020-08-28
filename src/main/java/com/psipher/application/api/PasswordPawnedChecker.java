@@ -11,14 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class PasswordPawnedChecker {
-    private boolean status;
-    PasswordPawnedOperations passwordpawnedoperations;
+
+    private PasswordPawnedOperations passwordpawnedoperations;
+
     @Autowired
     public PasswordPawnedChecker(PasswordPawnedOperations passwordpawnedoperations) {
         this.passwordpawnedoperations = passwordpawnedoperations;
     }
-    @RequestMapping(path = "/passwordpawnedchecker", method = RequestMethod.GET)
+
+    @RequestMapping(path = "/passwordpawnedchecker", method = RequestMethod.POST)
     public PasswordPawnedOutput passwordpawnedoutput(@RequestParam String pass) {
-        return passwordpawnedoperations.passwordpawnedchecker(pass);
+        PasswordPawnedOutput passwordPawnedOutput=new PasswordPawnedOutput();
+        passwordPawnedOutput.setStatus(passwordpawnedoperations.passwordPawnedChecker(pass));
+        return passwordPawnedOutput;
         }
 }

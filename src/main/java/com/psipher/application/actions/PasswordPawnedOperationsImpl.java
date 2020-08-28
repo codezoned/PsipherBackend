@@ -5,6 +5,7 @@ import com.github.nbaars.pwnedpasswords4j.client.PwnedPasswordChecker;
 import com.github.nbaars.pwnedpasswords4j.client.PwnedPasswordClient;
 import com.psipher.application.model.PasswordPawnedOutput;
 import okhttp3.OkHttpClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,15 +13,15 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class PasswordPawnedOperationsImpl implements PasswordPawnedOperations {
+    private PwnedPasswordChecker checker;
 
+    @Autowired
+    public PasswordPawnedOperationsImpl(PwnedPasswordChecker checker){
+        this.checker=checker;
+    }
     @Override
-    public PasswordPawnedOutput passwordpawnedchecker(String pass) {
-        PasswordPawnedOutput passwordpawnedoutput = new PasswordPawnedOutput();
-        PwnedPasswordClient client = new PwnedPasswordClient(new OkHttpClient(), "https://api.pwnedpasswords.com/range", "");
-        PwnedPasswordChecker checker = new PwnedPasswordChecker(client);
-        passwordpawnedoutput.setStatus(checker.check(pass));
-
-        return passwordpawnedoutput;
+    public boolean passwordPawnedChecker(String pass) {
+        return checker.check(pass);
     }
 }
 

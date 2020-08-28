@@ -6,7 +6,7 @@ public interface PasswordPawnedOperations {
     /**
      * It checks whether the password has been pawned for the user.
      * @param pass the input password of the user
-     * @return pawned or not
+     * @return true or false
      */
-    PasswordPawnedOutput passwordpawnedchecker(String pass);
+    boolean passwordPawnedChecker(String pass);
 }

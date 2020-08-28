@@ -10,10 +10,13 @@ import com.amazonaws.services.dynamodbv2.datamodeling.encryption.DynamoDBEncrypt
 import com.amazonaws.services.dynamodbv2.datamodeling.encryption.providers.DirectKmsMaterialProvider;
 import com.amazonaws.services.kms.AWSKMS;
 import com.amazonaws.services.kms.AWSKMSClientBuilder;
+import com.github.nbaars.pwnedpasswords4j.client.PwnedPasswordChecker;
+import com.github.nbaars.pwnedpasswords4j.client.PwnedPasswordClient;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.psipher.application.actions.UserDetailsOperations;
 import com.psipher.application.actions.UserDetailsOperationsImpl;
+import okhttp3.OkHttpClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -60,5 +63,11 @@ public class ApplicationContext {
     @Bean
     public Gson getGson() {
         return new GsonBuilder().setPrettyPrinting().create();
+    }
+
+    @Bean
+    public PwnedPasswordChecker getChecker() {
+        PwnedPasswordClient client = new PwnedPasswordClient(new OkHttpClient(), "https://api.pwnedpasswords.com/range", "");
+        return new PwnedPasswordChecker(client);
     }
 }
