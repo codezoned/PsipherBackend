@@ -11,7 +11,6 @@
     </a>
  
 ![Issues](https://img.shields.io/github/issues/codezoned/PsipherBackend)
-![visitors](https://visitor-badge.glitch.me/badge?page_id=codezoned.PsipherBackend)
 ![Pull Request](https://img.shields.io/github/issues-pr-closed/codezoned/PsipherBackend)
 [![Your are visitor number](http://hits.dwyl.com/codezoned/PsipherBackend.svg)](http://hits.dwyl.com/codezoned/PsipherBackend)
  </p>
