@@ -9,8 +9,13 @@
     <a href="https://packagist.org/packages/codezoned/PsipherBackend" target="_blank">
         <img src="https://img.shields.io/packagist/dt/codezoned/PSipherBackend.svg" alt="Packagist downloads">
     </a>
+ 
+![Issues](https://img.shields.io/github/issues/codezoned/PsipherBackend)
+![visitors](https://visitor-badge.glitch.me/badge?page_id=codezoned.PsipherBackend)
+![Pull Request](https://img.shields.io/github/issues-pr-closed/codezoned/PsipherBackend)
+[![Your are visitor number](http://hits.dwyl.com/codezoned/PsipherBackend.svg)](http://hits.dwyl.com/codezoned/PsipherBackend)
  </p>
-
+ 
 Psipher is a free and open source password managing web application.
 It has a serverless architecture and can be deployed locally to the user's personal cloud account, such as AWS.
 This package only deals with the backend part of the project.
