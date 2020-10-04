@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.psipher.application.actions.UserDetailsOperations;
 import com.psipher.application.model.SaveDetailsInput;
 import com.psipher.application.model.SaveDetailsOutput;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import static com.psipher.application.api.ApiConstants.UNKNOWN_USER;
 
 @RestController
 public class SaveDetails {
@@ -21,8 +24,6 @@ public class SaveDetails {
 
     private static final Logger logger = LoggerFactory.getLogger(SaveDetails.class);
 
-    final static String INVALID_INPUT = "Invalid input";
-    final static String UNKNOWN_USER = "Unknown User";
 
     @Autowired
     public SaveDetails(UserDetailsOperations userDetailsOperations, Gson gson) {
@@ -32,8 +33,11 @@ public class SaveDetails {
 
     @RequestMapping(path = "/savedetails", method = RequestMethod.POST)
     public SaveDetailsOutput saveDetails(@RequestBody SaveDetailsInput saveDetailsInput) {
-        if (!checkValidInput(saveDetailsInput))
-            return new SaveDetailsOutput(saveDetailsInput!=null ?saveDetailsInput.getUserId():UNKNOWN_USER, INVALID_INPUT);
+        if (!checkValidInput(saveDetailsInput)) {
+            String userId = StringUtils.isNotBlank(saveDetailsInput.getUserId()) ?
+                    saveDetailsInput.getUserId() : UNKNOWN_USER;
+            return new SaveDetailsOutput(userId, ApiConstants.INVALID_INPUT);
+        }
         String status = userDetailsOperations
                 .saveDetails(saveDetailsInput.getUserId(), saveDetailsInput.getDomain(),
                         saveDetailsInput.getUserAccount(), saveDetailsInput.getType(),
@@ -46,9 +50,10 @@ public class SaveDetails {
     }
 
     private boolean checkValidInput(SaveDetailsInput saveDetailsInput) {
-        return saveDetailsInput != null && saveDetailsInput.getUserId() != null
-                && saveDetailsInput.getDomain() != null && saveDetailsInput.getPassword() != null
-                && saveDetailsInput.getUserAccount() != null;
+        return StringUtils.isNotBlank(saveDetailsInput.getUserId())
+                && StringUtils.isNotBlank(saveDetailsInput.getDomain())
+                && StringUtils.isNotBlank(saveDetailsInput.getPassword())
+                && StringUtils.isNotBlank(saveDetailsInput.getUserAccount());
     }
 
 

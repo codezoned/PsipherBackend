@@ -17,8 +17,13 @@ public class GeneratePassword {
         this.generatePasswordOperations = generatePasswordOperations;
     }
 
+    /**
+     *  We set length to be nullable so that we can return a failure response not error 400
+     * @param length
+     * @return
+     */
     @RequestMapping(path = "/generatepassword", method = RequestMethod.GET)
-    public GeneratePasswordOutput generatePassword(@RequestParam Integer length) {
+    public GeneratePasswordOutput generatePassword(@RequestParam(required = false) Integer length) {
         GeneratePasswordOutput generatePasswordOutput = new GeneratePasswordOutput();
         if (length != null && length >= 6) {
             generatePasswordOutput.setPassword(generatePasswordOperations.generatePassword(length));

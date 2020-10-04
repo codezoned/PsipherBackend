@@ -12,22 +12,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.psipher.application.api.ApiConstants.INVALID_INPUT;
+
 @RestController
 public class DeleteUser {
     UserDetailsOperations userDetailsOperations;
 
     private static final Logger logger = LoggerFactory.getLogger(DeleteUser.class);
 
-    final static String INVALID_INPUT = "Invalid input";
 
     @Autowired
     public DeleteUser(UserDetailsOperations userDetailsOperations) {
         this.userDetailsOperations = userDetailsOperations;
     }
 
+    /**
+     * no need to null check body since it will return to 400 if payload is null
+     * @param deleteUserInput
+     * @return
+     */
     @RequestMapping(path = "/deleteuser", method = RequestMethod.POST)
     public DeleteUserOutput deleteUser(@RequestBody DeleteUserInput deleteUserInput) {
-        if (!checkValidInput(deleteUserInput)) {
+        if (deleteUserInput.getUserId() == null) {
             return new DeleteUserOutput(INVALID_INPUT);
         }
         String status;
@@ -40,7 +46,4 @@ public class DeleteUser {
         return new DeleteUserOutput(status);
     }
 
-    private boolean checkValidInput(DeleteUserInput deleteUserInput) {
-        return deleteUserInput != null && deleteUserInput.getUserId() != null;
-    }
 }

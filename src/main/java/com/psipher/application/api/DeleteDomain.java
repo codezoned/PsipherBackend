@@ -4,6 +4,7 @@ import com.psipher.application.actions.UserDetailsOperations;
 import com.psipher.application.exceptions.DDBException;
 import com.psipher.application.model.DeleteDomainInput;
 import com.psipher.application.model.DeleteDomainOutput;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.psipher.application.api.ApiConstants.INVALID_INPUT;
+
 @RestController
 public class DeleteDomain {
     UserDetailsOperations userDetailsOperations;
 
     private static final Logger logger = LoggerFactory.getLogger(DeleteDomain.class);
 
-    final static String INVALID_INPUT = "Invalid input";
 
     @Autowired
     public DeleteDomain(UserDetailsOperations userDetailsOperations) {
@@ -39,9 +41,9 @@ public class DeleteDomain {
         return new DeleteDomainOutput(status);
     }
 
+    // no need to null check request body since it will return to 400
     private boolean checkValidInput(DeleteDomainInput deleteDomainInput) {
-        return deleteDomainInput != null && deleteDomainInput.getUserId() != null
-                && deleteDomainInput.getDomain() != null;
+        return StringUtils.isNotBlank(deleteDomainInput.getUserId()) && StringUtils.isNotBlank(deleteDomainInput.getDomain());
     }
 
 }
